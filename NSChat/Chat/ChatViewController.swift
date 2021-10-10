@@ -14,7 +14,7 @@ class ChatViewController: UIViewController {
     private var sectionData: [MessageSection] = []
     private let service: ChatNetworkService = ChatNetworkServiceImpl()
     
-    // MARK: - TitleConstants
+    
     
     private enum Constants {
         static let textViewTrailingOffset: CGFloat = -16
@@ -25,6 +25,7 @@ class ChatViewController: UIViewController {
         static let placeholderInsets = UIEdgeInsets(top: 10, left: 16, bottom: 10, right: 40)
         static let sendButtonInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 0)
         static let sendButtonSize = CGSize(width: 32, height: 32)
+        static let lineHeight: CGFloat = 1
     }
     
     // MARK: - UI
@@ -124,12 +125,12 @@ class ChatViewController: UIViewController {
             inputTextField.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor, constant: Constants.textViewTrailingOffset),
             inputTextField.topAnchor.constraint(equalTo: bottomView.topAnchor, constant: Constants.textViewTopOffset),
             inputTextField.heightAnchor.constraint(equalToConstant: Constants.textViewHeight),
-            inputTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: Constants.placeholderInsets.bottom),
+            inputTextField.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.placeholderInsets.bottom),
             
             borderView.topAnchor.constraint(equalTo: bottomView.topAnchor),
             borderView.leadingAnchor.constraint(equalTo: bottomView.leadingAnchor),
             borderView.trailingAnchor.constraint(equalTo: bottomView.trailingAnchor),
-            borderView.heightAnchor.constraint(equalToConstant: 1),
+            borderView.heightAnchor.constraint(equalToConstant: Constants.lineHeight),
             
             sendButton.topAnchor.constraint(equalTo: inputTextField.topAnchor, constant: Constants.sendButtonInsets.top),
             sendButton.trailingAnchor.constraint(equalTo: inputTextField.trailingAnchor, constant: -Constants.sendButtonInsets.left),
