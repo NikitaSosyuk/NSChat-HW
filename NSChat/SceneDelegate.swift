@@ -18,9 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: scene)
         self.window = window
         
-        let rootViewController = ChatViewController()
+        let rootViewController = ProfileViewController()
         let navigationViewController = UINavigationController(rootViewController: rootViewController)
-
+        
         window.rootViewController = navigationViewController
         
         window.makeKeyAndVisible()
