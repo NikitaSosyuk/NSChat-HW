@@ -19,7 +19,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = window
         
         let rootViewController = ProfileViewController()
+        
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.titleTextAttributes = [
+            .font: UIFont(name: "Habibi-Regular", size: 17)!,
+            .foregroundColor: UIColor.label
+        ]
+        navBarAppearance.largeTitleTextAttributes = [
+            .font: UIFont(name: "Habibi-Regular", size: 34)!,
+            .foregroundColor: UIColor.label
+        ]
+        
         let navigationViewController = UINavigationController(rootViewController: rootViewController)
+        navigationViewController.navigationBar.standardAppearance = navBarAppearance
+        navigationViewController.navigationBar.compactAppearance = navBarAppearance
         
         window.rootViewController = navigationViewController
         
