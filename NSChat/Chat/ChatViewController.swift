@@ -14,7 +14,7 @@ class ChatViewController: UIViewController {
     private var sectionData: [MessageSection] = []
     private let service: ChatNetworkService = ChatNetworkServiceImpl()
     
-    
+    // MARK: - Constants
     
     private enum Constants {
         static let textViewTrailingOffset: CGFloat = -16

@@ -131,7 +131,7 @@ final class ProfileViewController: UIViewController {
     }
     
     @objc private func messagesTaped() {
-        //navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(ChatListViewController(), animated: true)
     }
     
     @objc private func logoutTaped() { }
