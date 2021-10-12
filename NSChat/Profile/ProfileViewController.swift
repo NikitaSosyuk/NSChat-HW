@@ -27,8 +27,7 @@ final class ProfileViewController: UIViewController {
     
     private let cityLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .secondaryLabel
-        label.font = UIFont(name: "Habibi-Regular", size: 16) ?? UIFont.systemFont(ofSize: 16)
+        label.font = UIFont(name: "Habibi-Regular", size: 16)!
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -42,16 +41,16 @@ final class ProfileViewController: UIViewController {
         button.layer.borderColor = UIColor.label.cgColor
         
         button.imageEdgeInsets = .init(
-            top: 0,
+            top: Constants.logoutButtonTopOffset / 2,
             left: -Constants.logoutButtonInset,
             bottom: 0,
             right: Constants.logoutButtonInset
         )
         
         button.titleEdgeInsets = .init(
-            top: 0,
+            top: Constants.logoutButtonTopOffset,
             left: Constants.logoutButtonInset,
-            bottom: 0,
+            bottom: Constants.logoutButtonTopOffset,
             right: -Constants.logoutButtonInset
         )
         
@@ -66,7 +65,7 @@ final class ProfileViewController: UIViewController {
         button.setTitle("Logout", for: .normal)
         button.setTitleColor(.label, for: .normal)
         
-        button.titleLabel?.font = UIFont(name: "Habibi-Regular", size: 16) ?? UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont(name: "Habibi-Regular", size: 16)!
         
         return button
     }()
@@ -76,8 +75,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .backgroundMy
         self.cityLabel.text = "Brooklyn, NY"
         self.navigationItem.title = "Alex Tsimikas"
         self.logoutButton.addTarget(self, action: #selector(logoutTaped), for: .touchUpInside)
@@ -117,7 +115,7 @@ final class ProfileViewController: UIViewController {
     }
     
     private func setConstraints() {
-        LayoutManager.turnOffAutoresizingMaskTo(cityLabel, logoutButton)
+        // LayoutManager.turnOffAutoresizingMaskTo(cityLabel, logoutButton)
         
         cityLabel.snp.makeConstraints { make in
             make.leading.equalTo(view.safeAreaLayoutGuide).inset(Constants.cityLabelLeftInset)

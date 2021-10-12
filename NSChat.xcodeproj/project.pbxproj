@@ -129,7 +129,7 @@
 				3CAE6041270A167200B544CD /* Assets.xcassets */,
 				3CAE6043270A167200B544CD /* LaunchScreen.storyboard */,
 				3CAE6046270A167200B544CD /* Info.plist */,
-				3CAE6055270A268C00B544CD /* Helpers */,
+				3CAE6055270A268C00B544CD /* Helpers+Extension */,
 				3CAE6052270A240300B544CD /* CustomViews */,
 			);
 			path = NSChat;
@@ -159,19 +159,19 @@
 			children = (
 				3C4D6963270AF4B0009A25A1 /* HeaderView.swift */,
 				3C2CCC2F270B5385008463C0 /* SuperTextField.swift */,
-				3C2CCC31270B7094008463C0 /* UIView+Extension.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		3CAE6055270A268C00B544CD /* Helpers */ = {
+		3CAE6055270A268C00B544CD /* Helpers+Extension */ = {
 			isa = PBXGroup;
 			children = (
+				3C2CCC31270B7094008463C0 /* UIView+Extension.swift */,
 				3CAE6057270A26B400B544CD /* UIColor+Extension.swift */,
-				3CAE605F270A2EDD00B544CD /* LayoutManager.swift */,
 				3C3570CC27133933006299DA /* UIFont+Extension.swift */,
+				3CAE605F270A2EDD00B544CD /* LayoutManager.swift */,
 			);
-			path = Helpers;
+			path = "Helpers+Extension";
 			sourceTree = "<group>";
 		};
 		3CAE6059270A2A0F00B544CD /* Cell */ = {

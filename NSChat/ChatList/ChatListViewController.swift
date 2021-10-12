@@ -32,14 +32,14 @@ final class ChatListViewController: UIViewController {
             date: "20/9/21"
         ),
         Chat(
-            image: UIImage(named: "ProfilePhoto-4"),
+            image: UIImage(named: "Profile"),
             firstName: "Leslie",
             lastName: "Alexander",
             description: "Sent you an invite for next monday.",
             date: "19/9/21"
         ),
         Chat(
-            image: UIImage(named: "ProfilePhoto-5"),
+            image: UIImage(named: "ProfilePhoto-4"),
             firstName: "Tony",
             lastName: "Monta",
             description: "How’s Alicia doing? Ask her to give m...",
@@ -64,7 +64,7 @@ final class ChatListViewController: UIViewController {
         let tableView = UITableView()
         tableView.separatorStyle = .singleLine
         tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: ChatTableViewCell.identifier)
-        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .backgroundMy
         return tableView
     }()
 
@@ -74,7 +74,7 @@ final class ChatListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .systemBackground
+        self.view.backgroundColor = .backgroundMy
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -94,14 +94,12 @@ final class ChatListViewController: UIViewController {
             ]
         )
         self.searchController.searchBar.searchTextField.attributedPlaceholder = searchPlaceholderMutableString
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.obscuresBackgroundDuringPresentation = false
     
         addSubviews()
         setConstraints()
     }
     
-    // MARK: Private func
+    // MARK: - Private func
     
     private func addSubviews() {
         view.addSubview(tableView)

@@ -14,10 +14,14 @@ final class ChatTableViewCell: UITableViewCell {
     // MARK: - Constants
     
     private struct Constants {
-        static let labelLeading: CGFloat = 8
-        static let imageWidthHeight: CGFloat = 40
-        static let descriptionLabelTop: CGFloat = 4
-        static let contentTopLeadingBottomTrailing: CGFloat = 24
+        static let dateTopTrailing: CGFloat = 24
+        static let imageTopBottom: CGFloat = 26
+        static let imageLeading: CGFloat = 24
+        static let textTopBottom: CGFloat = 24
+        static let textLeading: CGFloat = 8
+        static let textTrailing: CGFloat = 43
+        static let distanceBetweenLabel: CGFloat = 4
+        static let imageHeightWidth: CGFloat = 40
     }
     
     // MARK: - UI
@@ -51,18 +55,11 @@ final class ChatTableViewCell: UITableViewCell {
         return label
     }()
     
-    private let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.spacing = Constants.descriptionLabelTop
-        stackView.axis = .vertical
-        return stackView
-    }()
-    
     // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        self.backgroundColor = .backgroundMy
         addSubviews()
         setConstraints()
     }
@@ -83,30 +80,37 @@ final class ChatTableViewCell: UITableViewCell {
     // MARK: - Private func
     
     private func addSubviews() {
-        self.addSubview(avatarImageView)
-        self.addSubview(stackView)
-        self.addSubview(dateLabel)
-        stackView.addArrangedSubview(usernameLabel)
-        stackView.addArrangedSubview(descriptionLabel)
+        LayoutManager.addSubviewsTo(view: self, avatarImageView, dateLabel, usernameLabel, descriptionLabel)
     }
     
     private func setConstraints() {
-        LayoutManager.turnOffAutoresizingMaskTo(avatarImageView, stackView, dateLabel, usernameLabel, descriptionLabel)
+        // LayoutManager.turnOffAutoresizingMaskTo(avatarImageView, stackView, dateLabel, usernameLabel, descriptionLabel)
+        usernameLabel.snp.contentHuggingHorizontalPriority = 240
+        usernameLabel.snp.contentHuggingVerticalPriority = 1000
+        descriptionLabel.snp.contentHuggingVerticalPriority = 1000
         
-        avatarImageView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        avatarImageView.widthAnchor.constraint(equalToConstant: Constants.imageWidthHeight).isActive = true
-        avatarImageView.heightAnchor.constraint(equalToConstant: Constants.imageWidthHeight).isActive = true
-        avatarImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: Constants.contentTopLeadingBottomTrailing).isActive = true
-        layoutIfNeeded()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2
+        avatarImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(Constants.imageLeading)
+            make.top.equalToSuperview().inset(Constants.imageTopBottom)
+            make.width.height.equalTo(Constants.imageHeightWidth)
+        }
         
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        stackView.leadingAnchor.constraint(equalTo: avatarImageView.trailingAnchor, constant: Constants.labelLeading).isActive = true
-        stackView.topAnchor.constraint(greaterThanOrEqualTo: self.topAnchor, constant: Constants.contentTopLeadingBottomTrailing).isActive = true
-        stackView.bottomAnchor.constraint(greaterThanOrEqualTo: self.bottomAnchor, constant: -Constants.contentTopLeadingBottomTrailing).isActive = true
+        usernameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(Constants.textTopBottom)
+            make.leading.equalTo(avatarImageView.snp.trailing).offset(Constants.textLeading)
+            make.trailing.equalTo(dateLabel.snp.leading)
+        }
         
-        dateLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: Constants.contentTopLeadingBottomTrailing).isActive = true
-        dateLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -Constants.contentTopLeadingBottomTrailing).isActive = true
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(usernameLabel.snp.bottom).offset(Constants.distanceBetweenLabel)
+            make.bottom.equalToSuperview().inset(Constants.textTopBottom).priority(999)
+            make.leading.equalTo(usernameLabel)
+            make.trailing.equalToSuperview().inset(Constants.textTrailing)
+        }
+        
+        dateLabel.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(Constants.dateTopTrailing)
+            make.top.equalToSuperview().inset(Constants.dateTopTrailing)
+        }
     }
 }

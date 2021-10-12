@@ -26,9 +26,12 @@ class HeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(dateLabel)
         contentView.backgroundColor = .white
+        contentView.addSubview(dateLabel)
+        contentView.backgroundColor = .backgroundMy
+        self.backgroundColor = .backgroundMy
         dateLabel.textAlignment = .center
+        dateLabel.backgroundColor = .clear
         setConstraints()
     }
     

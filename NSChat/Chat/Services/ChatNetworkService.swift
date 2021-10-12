@@ -27,7 +27,7 @@ final class ChatNetworkServiceImpl: ChatNetworkService {
                         isExternalMessage: false
                     ),
                     Message(
-                        text: "AI’m visiting mom this sunday 👻",
+                        text: "I’m visiting mom this sunday 👻",
                         date: Date(timeIntervalSince1970: 1631653008000.0),
                         isExternalMessage: false
                     ),
